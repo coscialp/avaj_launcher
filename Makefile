@@ -5,7 +5,7 @@ FILE = scenarios/scenario.txt
 all: build
 
 build:
-	find -name "*.java" > sources.txt
+	find . -name "*.java" > sources.txt
 	javac @sources.txt -d $(OUT_DIR)
 
 run:
