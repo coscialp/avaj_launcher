@@ -1,7 +1,5 @@
 package com.avaj_launcher;
 
-import com.avaj_launcher.Aircrafts.Flyable;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -14,8 +12,8 @@ public class ScenarioParser {
             throw new IllegalArgumentException("Invalid number of arguments");
         }
 
-        List<String> lines = new ArrayList<String>();
-        List<String[]> aircraftData = new ArrayList<String[]>();
+        List<String> lines = new ArrayList<>();
+        List<String[]> aircraftData = new ArrayList<>();
 
         try (RandomAccessFile reader = new RandomAccessFile(args[0], "r")) {
             while (reader.getFilePointer() < reader.length()) {

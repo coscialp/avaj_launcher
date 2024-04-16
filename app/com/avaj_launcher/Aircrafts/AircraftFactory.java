@@ -1,6 +1,5 @@
 package com.avaj_launcher.Aircrafts;
 
-import com.avaj_launcher.Exceptions.AircraftNeedLandingException;
 import com.avaj_launcher.Exceptions.InvalidAircraftTypeException;
 import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
 

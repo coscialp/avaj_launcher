@@ -1,7 +1,6 @@
 package com.avaj_launcher.Aircrafts;
 
 import com.avaj_launcher.Color;
-import com.avaj_launcher.Exceptions.AircraftNeedLandingException;
 import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
 
 public class Helicopter extends Aircraft {

@@ -6,7 +6,6 @@ import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
 import com.avaj_launcher.Weathers.WeatherTower;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class Simulator {
