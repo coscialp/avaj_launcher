@@ -2,14 +2,17 @@ package com.avaj_launcher.Aircrafts;
 
 import com.avaj_launcher.Color;
 import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
+import com.avaj_launcher.Presenter.Presenter;
+
+import java.io.IOException;
 
 public class Balloon extends Aircraft {
 
-    public Balloon(long valueOfId, String valueOfName, Coordinates valueOfCoordinates) {
-        super(valueOfId, valueOfName, valueOfCoordinates);
+    public Balloon(long valueOfId, String valueOfName, Coordinates valueOfCoordinates, Presenter refOfPresenter) {
+        super(valueOfId, valueOfName, valueOfCoordinates, refOfPresenter);
     }
 
-    public void updateConditions() throws OnlyPositiveCoordinatesValueException {
+    public void updateConditions() throws OnlyPositiveCoordinatesValueException, IOException {
         String weather = this.weatherTower.getWeather(this.coordinates);
         switch (weather) {
             case "SUN":
@@ -40,11 +43,11 @@ public class Balloon extends Aircraft {
                 );
                 break;
         }
-        System.out.println(this.color + "Balloon#" + this.name + "(" + this.id + "): " + this.weatherTower.messageByWeather(weather) + Color.RESET);
+        this.presenter.log(this.color + "Balloon#" + this.name + "(" + this.id + "): " + this.weatherTower.messageByWeather(weather) + Color.RESET);
         if (this.coordinates.getHeight() <= 0) {
             this.weatherTower.land(this);
-            System.out.println(this.color + "Balloon#" + this.name + "(" + this.id + ") landing." + Color.RESET);
-            System.out.println(this.color + "Tower says: Balloon#" + this.name + "(" + this.id + ") unregistered from weather tower." + Color.RESET);
+            this.presenter.log(this.color + "Balloon#" + this.name + "(" + this.id + ") landing." + Color.RESET);
+            this.presenter.log(this.color + "Tower says: Balloon#" + this.name + "(" + this.id + ") unregistered from weather tower." + Color.RESET);
         }
     }
 }

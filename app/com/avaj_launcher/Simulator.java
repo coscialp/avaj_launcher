@@ -3,21 +3,25 @@ package com.avaj_launcher;
 import com.avaj_launcher.Aircrafts.*;
 import com.avaj_launcher.Exceptions.InvalidAircraftTypeException;
 import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
+import com.avaj_launcher.Presenter.ConsolePresenter;
+import com.avaj_launcher.Presenter.FilePresenter;
 import com.avaj_launcher.Weathers.WeatherTower;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 public class Simulator {
+    private static String presenterType = "-file";
     private static void writeUsage() {
-        System.out.println("Usage:\tjava com.avaj_launcher.Simulator scenario.txt");
+        System.out.println("Usage:\tjava com.avaj_launcher.Simulator scenario.txt <-file|-console>");
         System.out.println("=====================================================");
         System.out.println("scenario.txt: file containing the simulation scenario");
         System.out.println("The first line of the file must be a positive integer representing the number of times the simulation must be run");
         System.out.println("Each following line must contain data for an aircraft in the following format: TYPE NAME LONGITUDE LATITUDE HEIGHT");
     }
 
-    private static WeatherTower getWeatherTowerAndRegisterAllAircraft(List<String> lines) throws InvalidAircraftTypeException, OnlyPositiveCoordinatesValueException {
+    private static WeatherTower getWeatherTowerAndRegisterAllAircraft(List<String> lines) throws InvalidAircraftTypeException, OnlyPositiveCoordinatesValueException, IOException {
         WeatherTower weatherTower = new WeatherTower();
         AircraftFactory aircraftFactory = AircraftFactory.getInstance();
 
@@ -28,7 +32,8 @@ public class Simulator {
                     aircraftData[1],
                     Integer.parseInt(aircraftData[2]),
                     Integer.parseInt(aircraftData[3]),
-                    Integer.parseInt(aircraftData[4])
+                    Integer.parseInt(aircraftData[4]),
+                    Simulator.presenterType.equals("-console") ? ConsolePresenter.getInstance() : FilePresenter.getInstance()
             );
             aircraft.registerTower(weatherTower);
         }
@@ -37,12 +42,13 @@ public class Simulator {
 
     public static void main(String[] args) {
         try {
-            if (args.length != 1) {
+            if (args.length != 1 && args.length != 2) {
                 writeUsage();
                 return;
             }
 
             List<String> lines = ScenarioParser.parse(args);
+            Simulator.presenterType = args.length == 2 ? args[1] : Simulator.presenterType;
             int nbOfSimulations = Integer.parseInt(lines.get(0));
             WeatherTower weatherTower = getWeatherTowerAndRegisterAllAircraft(lines);
 

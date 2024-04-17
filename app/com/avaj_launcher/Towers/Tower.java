@@ -3,6 +3,7 @@ package com.avaj_launcher.Towers;
 import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
 import com.avaj_launcher.Aircrafts.Flyable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Tower {
         landed.add(flyable);
     }
 
-    protected void conditionsChanged() throws OnlyPositiveCoordinatesValueException {
+    protected void conditionsChanged() throws OnlyPositiveCoordinatesValueException, IOException {
         for (Flyable flyable : observers) {
            flyable.updateConditions();
         }
