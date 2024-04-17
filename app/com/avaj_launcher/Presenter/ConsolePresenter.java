@@ -1,7 +1,5 @@
 package com.avaj_launcher.Presenter;
 
-import java.io.FileNotFoundException;
-
 public class ConsolePresenter implements Presenter {
     private static ConsolePresenter instance = null;
 
