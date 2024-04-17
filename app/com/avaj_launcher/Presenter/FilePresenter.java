@@ -1,12 +1,11 @@
 package com.avaj_launcher.Presenter;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class FilePresenter implements Presenter {
     private static FilePresenter instance = null;
-    private RandomAccessFile reader = null;
+    private final RandomAccessFile reader;
 
     private FilePresenter() throws IOException {
         this.reader = new RandomAccessFile("simulation.txt", "rw");

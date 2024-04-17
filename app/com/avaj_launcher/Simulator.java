@@ -7,7 +7,6 @@ import com.avaj_launcher.Presenter.ConsolePresenter;
 import com.avaj_launcher.Presenter.FilePresenter;
 import com.avaj_launcher.Weathers.WeatherTower;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 

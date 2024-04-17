@@ -8,7 +8,7 @@ public class ConsolePresenter implements Presenter {
     private ConsolePresenter() {
     }
 
-    public static ConsolePresenter getInstance() throws FileNotFoundException {
+    public static ConsolePresenter getInstance() {
         if (instance == null) {
             instance = new ConsolePresenter();
         }

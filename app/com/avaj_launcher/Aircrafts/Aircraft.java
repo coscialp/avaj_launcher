@@ -1,11 +1,9 @@
 package com.avaj_launcher.Aircrafts;
 
 import com.avaj_launcher.Color;
-import com.avaj_launcher.Presenter.FilePresenter;
 import com.avaj_launcher.Presenter.Presenter;
 import com.avaj_launcher.Weathers.WeatherTower;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class Aircraft implements Flyable {
@@ -15,7 +13,7 @@ public abstract class Aircraft implements Flyable {
     protected Color color;
     protected WeatherTower weatherTower;
 
-    protected Presenter presenter = null;
+    protected Presenter presenter;
 
     protected Aircraft(long valueOfId, String valueOfName, Coordinates valueOfCoordinates, Presenter refOfPresenter) {
         this.name = valueOfName;
