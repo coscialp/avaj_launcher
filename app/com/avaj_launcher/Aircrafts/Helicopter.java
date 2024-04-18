@@ -44,11 +44,11 @@ public class Helicopter extends Aircraft {
                 );
                 break;
         }
-        this.presenter.log(this.color + "Helicopter#" + this.name + "(" + this.id + "): " + this.weatherTower.messageByWeather(weather) + Color.RESET);
+        this.presenter.writeLog(this.color + "Helicopter#" + this.name + "(" + this.id + "): " + this.weatherTower.messageByWeather(weather) + Color.RESET);
         if (this.coordinates.getHeight() <= 0) {
             this.weatherTower.land(this);
-            this.presenter.log(this.color + "Helicopter#" + this.name + "(" + this.id + ") landing." + Color.RESET);
-            this.presenter.log(this.color + "Tower says: Helicopter#" + this.name + "(" + this.id + ") unregistered from weather tower." + Color.RESET);
+            this.presenter.writeLog(this.color + "Helicopter#" + this.name + "(" + this.id + ") landing." + Color.RESET);
+            this.presenter.writeLog(this.color + "Tower says: Helicopter#" + this.name + "(" + this.id + ") unregistered from weather tower." + Color.RESET);
         }
     }
 }

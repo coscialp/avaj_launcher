@@ -4,23 +4,31 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class FilePresenter implements Presenter {
-    private static FilePresenter instance = null;
-    private final RandomAccessFile reader;
+    private static final String FILE_PATH = "simulation.txt";
+    private static final String FILE_ACCESS_MODE = "rw";
+    private static final String STRIP_ANSI_ESCAPE_CODES_REGEX = "\u001B\\[[;\\d]*m";
+
+    private static volatile FilePresenter instance = null;
+    private final RandomAccessFile fileWriter;
 
     private FilePresenter() throws IOException {
-        this.reader = new RandomAccessFile("simulation.txt", "rw");
-        this.reader.setLength(0);
+        this.fileWriter = new RandomAccessFile(FILE_PATH, FILE_ACCESS_MODE);
+        this.fileWriter.setLength(0);
     }
 
     public static FilePresenter getInstance() throws IOException {
         if (instance == null) {
-            instance = new FilePresenter();
+            synchronized (FilePresenter.class) {
+                if (instance == null) {
+                    instance = new FilePresenter();
+                }
+            }
         }
         return instance;
     }
 
-    public void log(String message) throws IOException {
-        String formattedMessage = message.replaceAll("\u001B\\[[;\\d]*m", "");
-        reader.writeBytes(formattedMessage + "\n");
+    public void writeLog(String message) throws IOException {
+        String formattedMessage = message.replaceAll(STRIP_ANSI_ESCAPE_CODES_REGEX, "");
+        fileWriter.writeBytes(formattedMessage + "\n");
     }
 }

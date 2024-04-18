@@ -26,6 +26,6 @@ public abstract class Aircraft implements Flyable {
     public void registerTower(WeatherTower tower) throws IOException {
         this.weatherTower = tower;
         weatherTower.register(this);
-        this.presenter.log(this.color + "Tower says: " + this.name + "(" + this.id + ")" + " registered to weather tower." + Color.RESET);
+        this.presenter.writeLog(this.color + "Tower says: " + this.name + "(" + this.id + ")" + " registered to weather tower." + Color.RESET);
     }
 }

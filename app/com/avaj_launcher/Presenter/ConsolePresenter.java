@@ -1,19 +1,23 @@
 package com.avaj_launcher.Presenter;
 
 public class ConsolePresenter implements Presenter {
-    private static ConsolePresenter instance = null;
+    private static volatile ConsolePresenter instance = null;
 
     private ConsolePresenter() {
     }
 
     public static ConsolePresenter getInstance() {
         if (instance == null) {
-            instance = new ConsolePresenter();
+            synchronized (ConsolePresenter.class) {
+                if (instance == null) {
+                    instance = new ConsolePresenter();
+                }
+            }
         }
         return instance;
     }
 
-    public void log(String message) {
+    public void writeLog(String message) {
         System.out.println(message);
     }
 }

@@ -43,11 +43,11 @@ public class Balloon extends Aircraft {
                 );
                 break;
         }
-        this.presenter.log(this.color + "Balloon#" + this.name + "(" + this.id + "): " + this.weatherTower.messageByWeather(weather) + Color.RESET);
+        this.presenter.writeLog(this.color + "Balloon#" + this.name + "(" + this.id + "): " + this.weatherTower.messageByWeather(weather) + Color.RESET);
         if (this.coordinates.getHeight() <= 0) {
             this.weatherTower.land(this);
-            this.presenter.log(this.color + "Balloon#" + this.name + "(" + this.id + ") landing." + Color.RESET);
-            this.presenter.log(this.color + "Tower says: Balloon#" + this.name + "(" + this.id + ") unregistered from weather tower." + Color.RESET);
+            this.presenter.writeLog(this.color + "Balloon#" + this.name + "(" + this.id + ") landing." + Color.RESET);
+            this.presenter.writeLog(this.color + "Tower says: Balloon#" + this.name + "(" + this.id + ") unregistered from weather tower." + Color.RESET);
         }
     }
 }
