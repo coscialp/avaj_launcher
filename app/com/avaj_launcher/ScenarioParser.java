@@ -1,7 +1,5 @@
 package com.avaj_launcher;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -43,7 +41,7 @@ public class ScenarioParser {
         }
     }
 
-    private static @NotNull List<String> readFileLines(RandomAccessFile reader) throws IOException {
+    private static List<String> readFileLines(RandomAccessFile reader) throws IOException {
         List<String> lines = new ArrayList<>();
         while (reader.getFilePointer() < reader.length()) {
             lines.add(reader.readLine());
