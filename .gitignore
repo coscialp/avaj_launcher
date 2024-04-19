@@ -1,3 +1,9 @@
-.idea/
 out/
 sources.txt
+simulation.txt
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/

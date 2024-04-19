@@ -15,12 +15,12 @@ public abstract class Aircraft implements Flyable {
 
     protected Presenter presenter;
 
-    protected Aircraft(long valueOfId, String valueOfName, Coordinates valueOfCoordinates, Presenter refOfPresenter) {
-        this.name = valueOfName;
-        this.coordinates = valueOfCoordinates;
-        this.id = valueOfId;
+    protected Aircraft(long id, String name, Coordinates coordinates, Presenter presenter) {
+        this.name = name;
+        this.coordinates = coordinates;
+        this.id = id;
         this.color = Color.getRandomColor();
-        this.presenter = refOfPresenter;
+        this.presenter = presenter;
     }
 
     public void registerTower(WeatherTower tower) throws IOException {

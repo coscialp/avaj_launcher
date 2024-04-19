@@ -5,8 +5,16 @@ import com.avaj_launcher.Exceptions.OnlyPositiveCoordinatesValueException;
 import com.avaj_launcher.Towers.Tower;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class WeatherTower extends Tower {
+    private static final Map<String, String> weatherMessages = Map.of(
+            "RAIN", "It's raining.",
+            "FOG", "It's foggy.",
+            "SUN", "It's sunny.",
+            "SNOW", "It's snowing."
+    );
+
     public String getWeather(Coordinates coordinates) {
         return WeatherProvider.getWeatherProvider().getCurrentWeather(coordinates);
     }
@@ -16,12 +24,6 @@ public class WeatherTower extends Tower {
     }
 
     public String messageByWeather(String weather) {
-        return switch (weather) {
-            case "RAIN" -> "It's raining.";
-            case "FOG" -> "It's foggy.";
-            case "SUN" -> "It's sunny.";
-            case "SNOW" -> "It's snowing.";
-            default -> "Unknown weather.";
-        };
+        return weatherMessages.getOrDefault(weather, "Unknown weather");
     }
 }

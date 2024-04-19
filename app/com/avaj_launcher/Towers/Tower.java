@@ -25,13 +25,15 @@ public class Tower {
 
     protected void conditionsChanged() throws OnlyPositiveCoordinatesValueException, IOException {
         for (Flyable flyable : observers) {
-           flyable.updateConditions();
+            flyable.updateConditions();
         }
+        clearLanded();
+    }
 
+    private void clearLanded() {
         for (Flyable flyable : landed) {
             this.unregister(flyable);
         }
-
         landed.clear();
     }
 }
