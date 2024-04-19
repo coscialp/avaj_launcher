@@ -17,6 +17,7 @@ public class ScenarioParser {
     private static final String ERROR_INVALID_SCENARIO_FILE = "Invalid scenario file";
     private static final String ERROR_BAD_SCENARIO_FILE_LINE_1 = "Invalid scenario file. First line must be a positive integer representing the number of times the simulation must be run";
     private static final String ERROR_INVALID_AIRCRAFT_DATA = "Invalid aircraft data";
+    private static final String ERROR_FILE_MUST_BE_TXT = "File must be a .txt file";
 
     public static List<String> parse(String[] args) throws IllegalArgumentException, FileNotFoundException {
         validateArgs(args);
@@ -38,6 +39,10 @@ public class ScenarioParser {
         }
         if (args.length == EXPECTED_NUM_ARGS && !args[1].equals(CONSOLE_ARG) && !args[1].equals(FILE_ARG)) {
             throw new IllegalArgumentException(ERROR_INVALID_ARGUMENT);
+        }
+
+        if (!args[0].endsWith(".txt")) {
+            throw new IllegalArgumentException(ERROR_FILE_MUST_BE_TXT);
         }
     }
 
